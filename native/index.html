@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srimushnam | The Divine Heritage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. Master Color Palette (Based on your Artwork) --- */
+        :root {
+            --art-orange: #E87E35;   /* Sun/Warmth */
+            --art-teal: #B45253;     /* Nature/Depth */
+            --art-sand: #F2DCB3;     /* Background Tone */
+            --primary-maroon: #8B2E2E; /* Traditional Temple Red */
+            --accent-gold: #FFC857;  /* Highlights */
+            --text-dark: #333333;
+            --section-bg: #FAEED1;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--section-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--primary-maroon);
+        }
+
+        /* Utility: Section Styling */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--art-orange);
+            margin: 15px auto 0;
+        }
+
+        /* --- 2. Navigation (Transparent to Solid) --- */
+        .navbar-custom {
+            background-color: transparent;
+            transition: all 0.4s ease-in-out;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .navbar-custom.scrolled {
+            background-color: var(--primary-maroon);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            padding: 10px 0;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+        .navbar-brand {
+            font-size: 1.6rem;
+            color: white !important;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
+            margin-left: 15px;
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .nav-link:hover { color: var(--accent-gold) !important; }
+        
+        /* Nav Line Animation */
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -5px; left: 50%; background-color: var(--accent-gold);
+            transition: all 0.3s ease-in-out; transform: translateX(-50%);
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* --- 3. Hero Section (Parallax & Glass) --- */
+        .hero-wrapper {
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        
+        /* The Art Background */
+        /* --- Corrected Hero Styling --- */
+
+/* 1. Add z-index: 1 to the wrapper to create a stacking context. 
+   This ensures the background stays inside the hero, not behind the body. */
+.hero-wrapper {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    overflow: hidden;
+    z-index: 1; 
+}
+
+/* 2. Fix the Background Image priority and remove negative z-index.
+   We use DOM order (HTML order) to keep it behind content, 
+   so we don't need negative z-index. */
+.hero-bg {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    
+    /* IMPORTANT: Ensure your image file is named 'temple-art.jpg' 
+       and is in the same folder as this HTML file. */
+      background: /*linear-gradient(to bottom, rgba(232, 126, 53, 0.3), rgba(31, 110, 125, 0.3)),   */
+                url('temple-art.jpg') no-repeat center bottom;
+                
+    background-size: cover;
+    z-index: 1; /* Resets it to visible level */
+}
+
+/* 3. Ensure the Overlay is above the BG but below text */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(31, 110, 125, 0.3) 0%, rgba(139, 46, 46, 0.4) 100%);
+    z-index: 1;
+}
+
+/* 4. Ensure the Content Box is on top of everything */
+.hero-glass-box {
+    /* ... previous styles ... */
+    position: relative; /* Ensures it sits above absolute elements */
+    z-index: 10;
+    /* ... keep your other glass box styles ... */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 3rem;
+    max-width: 800px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    color: white;
+    transform-style: preserve-3d;
+    transform: translateZ(20px);
+}
+
+        .cta-btn {
+            background-color: var(--primary-maroon);
+            color: white;
+            padding: 12px 35px;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .cta-btn:hover {
+            background-color: white;
+            color: var(--primary-maroon);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- 4. Overlapping Info Cards --- */
+        .info-strip {
+            position: relative;
+            margin-top: -100px; /* Pulls section up */
+            z-index: 10;
+            padding-bottom: 50px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: transform 0.1s; /* Handled by JS Tilt */
+            height: 100%;
+            border-top: 5px solid var(--art-orange);
+            transform-style: preserve-3d;
+        }
+
+        .info-icon {
+            width: 70px; height: 70px;
+            background: var(--art-teal);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(31, 110, 125, 0.3);
+            transform: translateZ(30px);
+        }
+
+        /* --- POOJA SCROLL POPUP STYLES --- */
+#pooja-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999;
+    
+    /* Your requested background styles */
+     background: rgba(20, 10, 5, 0.75); 
+    
+    /* 2. The Blur Effect (Glassmorphism) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Flex centering (from your code) */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Close Button */
+.close-scroll-btn {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: #3a2a02;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+}
+.close-scroll-btn:hover { color: #f9d423; transform: rotate(90deg); }
+
+/* --- Your Original Scroll Variables & Styles --- */
+:root {
+    --gold-light: #f9d423;
+    --gold-dark: #b8860b;
+    --handle-gradient: linear-gradient(to bottom, #cf9812 0%, #fceabb 40%, #cf9812 100%);
+    --paper-color: #f4e4bc;
+}
+
+.scroll-wrapper {
+    position: relative;
+    width: 400px;
+    max-width: 90%;
+    z-index: 10;
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.scroll-wrapper:hover { transform: scale(1.02); }
+
+/* Handles */
+.roll {
+    height: 50px; width: 100%;
+    background: var(--handle-gradient);
+    border-radius: 5px;
+    position: relative; z-index: 5;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    border: 1px solid #8a6e3e;
+}
+.roll::before, .roll::after {
+    content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+    width: 25px; height: 35px;
+    background: radial-gradient(circle at 30% 30%, #ffd700, #b8860b);
+    border-radius: 4px;
+    border-left: 2px solid #5c4015; border-right: 2px solid #5c4015;
+}
+.roll::before { left: -20px; border-radius: 10px 2px 2px 10px; }
+.roll::after { right: -20px; border-radius: 2px 10px 10px 2px; }
+
+/* Tips */
+.roll-tip-left, .roll-tip-right {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px;
+    background: var(--gold-dark); border-radius: 50%; z-index: 1;
+}
+.roll-tip-left { left: -30px; border-right: 5px solid #ffd700; }
+.roll-tip-right { right: -30px; border-left: 5px solid #ffd700; }
+
+/* Paper */
+.paper {
+    background-color: #f4e4bc;
+    width: 90%; margin: 0 auto;
+    position: relative; overflow: hidden;
+    height: 0; /* Closed state */
+    transition: height 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Burned Edge */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 95% 98%, 90% 95%, 85% 98%, 80% 95%, 75% 98%, 70% 95%, 65% 98%, 60% 95%, 55% 98%, 50% 95%, 45% 98%, 40% 95%, 35% 98%, 30% 95%, 25% 98%, 20% 95%, 15% 98%, 10% 95%, 5% 98%, 0% 100%);
+    box-shadow: inset 0 0 60px rgba(139, 69, 19, 0.5);
+}
+
+/* Paper Content */
+.scroll-content {
+    padding: 30px 40px; text-align: center; color: #4a3b2a;
+    opacity: 0; transition: opacity 0.5s ease-in; transition-delay: 0.5s;
+}
+.scroll-content h2 {
+    font-family: 'Cinzel', serif; color: #800000;
+    border-bottom: 2px solid #b8860b; padding-bottom: 10px;
+}
+.scroll-content ul { list-style: none; padding: 0; line-height: 1.8; }
+.highlight-box {
+    background: rgba(184, 134, 11, 0.1); padding: 10px;
+    border: 1px solid rgba(184, 134, 11, 0.3); margin-top: 15px; border-radius: 4px;
+}
+
+/* Open State */
+.scroll-wrapper.open .paper { height: 550px; }
+.scroll-wrapper.open .scroll-content { opacity: 1; }
+
+        /* --- 5. History Section --- */
+        /* --- Updated History Collage Styles --- */
+        #history {
+            background-color: #FAEED1
+        }
+.history-wrapper {
+    position: relative;
+    padding: 20px;
+}
+
+/* The Main (Back) Image */
+.history-main-img {
+    width: 85%; /* Leave space for the second image */
+    border: 10px solid white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transform: rotate(-3deg);
+    transition: all 0.4s ease;
+    border-radius: 10px;
+}
+
+/* The New (Front) Image */
+.history-overlay-img {
+    position: absolute;
+    bottom: -20px; /* Pulls it down */
+    right: 10px;   /* Pushes it right */
+    width: 55%;    /* Smaller size */
+    border: 8px solid white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transform: rotate(5deg);
+    z-index: 2;
+    transition: all 0.4s ease;
+    border-radius: 10px;
+}
+
+/* Hover Effects: Bring clicked/hovered image to front */
+.history-wrapper:hover .history-main-img {
+    transform: rotate(0deg);
+}
+.history-wrapper:hover .history-overlay-img {
+    transform: rotate(0deg) scale(1.05);
+}
+
+
+/* legend text */
+/* --- LEGEND PARCHMENT POPUP --- */
+#legend-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Dark dim background */
+    backdrop-filter: blur(5px);
+    z-index: 10000; /* On top of everything */
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#legend-overlay.show {
+    opacity: 1;
+}
+
+.parchment-box {
+    /* Use the image you just uploaded */
+    background-image: url('parchment.png'); 
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    
+    width: 90%;
+    max-width: 700px;
+    min-height: 500px; /* Ensure enough height for text */
+    
+    padding: 80px 60px; /* Large padding to keep text inside the rough edges */
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#legend-overlay.show .parchment-box {
+    transform: scale(1);
+}
+
+/* Close "X" Button */
+.close-legend-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #8B2E2E;  /* Dark brown to match paper */
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.close-legend-btn:hover {
+    color: #800000;
+}
+
+/* Text Styling */
+#typewriter-text {
+    font-family: 'Cinzel', serif; /* Ancient looking font */
+    color: #8d1e1e; /* Dark brown ink color */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 600;
+    white-space: pre-wrap; /* Preserves spacing */
+}
+
+/* Blinking Cursor Effect */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: #3e2723;
+    animation: blink 0.8s infinite;
+    vertical-align: bottom;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .parchment-box {
+        padding: 60px 30px;
+        min-height: 400px;
+    }
+    #typewriter-text {
+        font-size: 0.95rem;
+    }
+}
+/* legend text */
+
+        /* --- 6. Attractions (Grid) --- */
+        .attraction-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            height: 100%;
+        }
+        .attraction-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .attraction-body {
+            padding: 20px;
+            border-bottom: 4px solid var(--art-teal);
+        }
+
+        /* --- 7. Culture & Animated Chariot --- */
+        .culture-section {
+            background: var(--art-teal);
+            color: white;
+            overflow: hidden;
+        }
+        .culture-section h2, .culture-section h4 { color: var(--accent-gold); }
+        
+        /* Chariot Animation */
+        .chariot-track {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 60px;
+            border-top: 2px dashed rgba(255,255,255,0.2);
+        }
+        .chariot-icon {
+            position: absolute; bottom: 15px; left: -100px;
+            font-size: 60px; color: var(--accent-gold);
+            animation: drive 20s linear infinite;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        @keyframes drive {
+            0% { left: -100px; transform: rotate(0deg); }
+            50% { transform: rotate(2deg); }
+            100% { left: 100%; transform: rotate(0deg); }
+        }
+/* facilities */
+
+        /* --- 8. Gallery --- */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .gallery-item img {
+            width: 100%; height: 250px; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* --- 9. Footer --- */
+        footer {
+            background: #222;
+            color: #ccc;
+            padding: 50px 0 20px;
+            border-top: 5px solid var(--primary-maroon);
+        }
+
+       /* --- FULLSCREEN GALLERY CAROUSEL --- */
+/* --- FIXED GALLERY CSS (High Z-Index & Visibility) --- */
+/* --- FIXED GALLERY CSS --- */
+/* --- TRANSPARENT BLURRED CAROUSEL CSS --- */
+
+/* 1. Transparent Modal Container */
+.modal-gallery-content {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* 2. The Glass Wrapper for Images */
+.gallery-image-wrapper {
+    height: 80vh; 
+    
+    /* CHANGE: Semi-transparent dark background */
+    background: rgba(0, 0, 0, 0.5); 
+    
+    /* CHANGE: Blur the website behind the carousel */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
+    
+    /* Flexbox for centering */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 15px; /* Softer edges */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+}
+
+/* 3. Image Styling */
+.gallery-image-wrapper img {
+    max-height: 90%; /* Slight padding so image doesn't touch edges */
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Shadow behind the photo */
+}
+.gallery-image-wrapper .img2 {
+    width: 600px;
+}
+.gallery-image-wrapper .img3 {
+    width: 600px;
+}
+.gallery-image-wrapper .img4 {
+    width: 600px;
+}
+/* 4. Arrows (Keep high visibility) */
+.carousel-control-prev, 
+.carousel-control-next {
+    width: 10%;
+    opacity: 1;
+    z-index: 100;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    background-size: 50%;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: transform 0.2s;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: var(--art-orange);
+    transform: scale(1.1);
+    border-color: white;
+}
+
+/* 5. Captions 
+.gallery-caption-overlay {
+    background: rgba(241, 240, 240, 0.6);
+    padding: 8px 20px;
+    border-radius: 50px;
+    bottom: 20px;
+    backdrop-filter: blur(5px); /* Double blur for caption */
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand cinzel-font" href="#">
+                <i class="fas fa-gopuram text-warning me-2"></i> Srimushnam
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox=\'0 0 30 30\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath stroke=\'rgba(255, 255, 255, 1)\' stroke-width=\'3\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' d=\'M4 7h22M4 15h22M4 23h22\'/%3E%3C/svg%3E');"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#history">History</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#attractions">Attractions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#culture">Culture</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-warning text-dark fw-bold px-4 rounded-pill shadow" href="#contact">Visit Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3D Hero Section -->
+    <header class="hero-wrapper" id="home">
+        <div class="hero-bg" id="heroArt"></div>
+        <div class="hero-overlay"></div>
+        <div class="container d-flex justify-content-center">
+            <div class="hero-glass-box js-tilt-hero">
+                <h4 class="text-uppercase ls-2 mb-3" style="letter-spacing: 3px; color: var(--accent-gold);">The Sacred Abode</h4>
+                <h1 class="display-3 fw-bold mb-4 text-white">Srimushnam</h1>
+                <h3 class="mb-4 text-light fw-light">"Land of Bhu Varaha & Harmony"</h3>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#history" class="cta-btn">Discover History</a>
+                    <a href="#attractions" class="btn btn-outline-light rounded-pill px-4 py-2 fw-bold" style="border-width: 2px;">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overlapping Highlights Strip -->
+    <section class="info-strip">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="info-card js-tilt-card">
+                        <div class="info-icon"><i class="far fa-clock"></i></div>
+                        <h4>Darshan Timings</h4>
+                        <p class="text-muted mb-1">Morning: 06:00 AM - 12:00 PM</p>
+                        <p class="text-muted">Evening: 04:00 PM - 08:30 PM</p>
+                       <a href="#" onclick="openPoojaPopup(event)" class="text-danger fw-bold text-decoration-none">Pooja Schedule &rarr;</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="info-card js-tilt-card" style="border-top-color: var(--art-teal);">
+                        <div class="info-icon" style="background-color: var(--art-orange);"><i class="fas fa-dharmachakra"></i></div>
+                        <h4>Vaikasi Ther</h4>
+                        <p class="text-muted">The 2nd largest Chariot Festival in Tamil Nadu. A symbol of unity and devotion.</p>
+                        <a href="#culture" class="text-danger fw-bold text-decoration-none">Explore Festival &rarr;</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="info-card js-tilt-card">
+                        <div class="info-icon"><i class="fas fa-leaf"></i></div>
+                        <h4>Nature & Parks</h4>
+                        <p class="text-muted">Visit Kolanchiyappar Temple Park for peacocks, deer, and serene lush greens.</p>
+                        <a href="#attractions" class="text-danger fw-bold text-decoration-none">See Attractions &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <!-- History Section with Double Images -->
+<section id="history" >
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <!-- Left Column: Image Collage -->
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="history-wrapper">
+                    <!-- Image 1: Inscriptions / Old Temple Wall -->
+                    <img src="history.jpg" alt="Temple History" class="img-fluid history-main-img">
+                    
+                    <!-- Image 2: Statue / Architecture Detail (NEW) -->
+                    <img src="ther.jpg" alt="Statue Detail" class="img-fluid history-overlay-img">
+                </div>
+            </div>
+
+            <!-- Right Column: Text Content -->
+            <div class="col-lg-6 ps-lg-5 mt-4 mt-lg-0">
+                <h5 class="text-uppercase text-danger spacing-2">Our Heritage</h5>
+                <h2 class="mb-4">A Legacy of 1000 Years</h2>
+                <p class="lead text-secondary">Srimushnam is one of the eight <strong>Swayam Vyakta Kshetras</strong> of Lord Vishnu.</p>
+                
+                <p class="text-muted">The Bhu Varaha Swamy Temple stands as a testament to the Chola and Vijayanagara architectural brilliance. Inscriptions dating back to the 11th century narrate tales of devotion and royal patronage.</p>
+                
+                <p class="text-muted">Geographically, the village lies in the fertile Vellar River basin, blessing the land with lush agriculture and a serene climate.</p>
+                
+                <a href="#" onclick="openLegendPopup(event)" class="btn btn-outline-dark mt-3 rounded-pill px-4">Read Full Legend</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+    <!-- Attractions Section -->
+    <section id="attractions">
+        <div class="container">
+            <h2 class="section-title">Must Visit Places</h2>
+            <div class="row g-4">
+                <!-- Attraction 1 -->
+                <div class="col-md-4">
+                    <div class="attraction-card js-tilt-card">
+                        <img src="bhu.jpg" class="attraction-img">
+                        <div class="attraction-body">
+                            <h4>Bhu Varaha Temple</h4>
+                            <p class="text-muted small">The architectural marvel with a seven-tier Rajagopuram.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Attraction 2 -->
+                <div class="col-md-4">
+                    <div class="attraction-card js-tilt-card">
+                        <img src="park.jpg" class="attraction-img">
+                        <div class="attraction-body">
+                            <h4>Kolanchiyappar Park</h4>
+                            <p class="text-muted small">A mini-zoo and spiritual park featuring peacocks and deer.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Attraction 3 -->
+                <div class="col-md-4">
+                    <div class="attraction-card js-tilt-card">
+                        <img src="river.jpg" class="attraction-img">
+                        <div class="attraction-body">
+                            <h4>Veeranam Lake</h4>
+                            <p class="text-muted small">A historic 10th-century lake offering stunning sunset views.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture & Chariot Animation -->
+    <!-- Culture & Video Section -->
+    <section id="culture" class="culture-section">
+        <div class="container position-relative z-2">
+            <div class="row align-items-center">
+                
+                <!-- Left: Text Content -->
+                <div class="col-lg-6">
+                    <h5 class="text-warning">Celebration of Unity</h5>
+                    <h2 class="mb-3 text-white">Vaikasi Ther Festival</h2>
+                    <p class="lead">Witness the grandeur of the 2nd largest temple chariot in Tamil Nadu.</p>
+                    <p class="text-light opacity-75">This festival is a unique symbol of communal harmony where people of all faiths participate in pulling the chariot. The air fills with chants, music, and devotion.</p>
+                    
+                    <div class="bg-white bg-opacity-10 p-3 rounded d-inline-flex align-items-center mt-3">
+                        <i class="fas fa-utensils text-warning fa-2x me-3"></i>
+                        <div>
+                            <h5 class="m-0 text-white">Famous Prasadam</h5>
+                            <small class="text-light">Koraikilangu Laddu (Sweet Tuber Delicacy)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Looping Video with Controls -->
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <div class="ratio ratio-16x9 rounded shadow-lg border border-3 border-warning" style="transform: rotate(2deg); overflow: hidden;">
+                        <video 
+                            src="festive.mp4" 
+                            autoplay 
+                            loop 
+                            muted 
+                            playsinline 
+                            controls
+                            style="object-fit: cover; width: 100%; height: 100%;">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <small class="text-light d-block mt-2 opacity-50">*Tap video to unmute</small>
+                </div>
+
+            </div>
+        </div>
+        
+        <!-- Animated Chariot Track -->
+        <div class="chariot-track">
+            <i class="fas fa-dungeon chariot-icon"></i>
+        </div>
+    </section>
+        <!-- Animated Chariot Track -->
+        <div class="chariot-track">
+            <i class="fas fa-dungeon chariot-icon"></i>
+        </div>
+    </section>
+
+    <!-- Facilities Grid -->
+    <section id="facilities" >
+        <div class="container">
+            <h2 class="section-title">Visitor Facilities</h2>
+            <div class="row text-center">
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="p-3">
+                        <i class="fas fa-bus fa-3x mb-3" style="color: #8B2E2E;"></i>
+                        <h5>Transport</h5>
+                        <small class="text-muted">Buses to Virudhachalam (18km)</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="p-3">
+                        <i class="fas fa-school fa-3x  mb-3" style="color: #8B2E2E;"></i>
+                        <h5>Education</h5>
+                        <small class="text-muted">DVC & Dhava Amudham Schools</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="p-3">
+                        <i class="fas fa-clinic-medical fa-3x  mb-3" style="color: #8B2E2E;"></i>
+                        <h5>Medical</h5>
+                        <small class="text-muted">Govt PHC & Private Clinics</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="p-3">
+                        <i class="fas fa-university fa-3x mb-3" style="color: #8B2E2E;"></i>
+                        <h5>Banking</h5>
+                        <small class="text-muted">ATMs & Nationalized Banks</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" >
+        <div class="container">
+            <h2 class="section-title">Photo Gallery</h2>
+            <div class="row g-3">
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="temp.png" alt="Gallery">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus fa-2x text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="nature.jpg" alt="Gallery">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus fa-2x text-white"></i></div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="gallery-item">
+                        <img src="masi-magam.jpg" alt="Gallery">
+                        <div class="gallery-overlay"><i class="fas fa-search-plus fa-2x text-white"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#galleryModal" class="btn btn-outline-dark px-5 rounded-pill shadow-sm">View All Photos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="text-white cinzel-font">Srimushnam</h3>
+                    <p class="small text-secondary">A divine destination blending history, spirituality, and nature's tranquility.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning mb-3">Quick Contact</h5>
+                    <ul class="list-unstyled text-secondary">
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +91 12345 67890</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> admin@srimushnam.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Panchayat Office, Cuddalore Dist.</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-warning mb-3">Connect</h5>
+                    <div>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                    <div class="mt-3">
+                        <img src="map.jpg" class="img-fluid rounded border border-secondary">
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="text-center small text-secondary">
+                &copy; 2023 Srimushnam Village Tourism. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- The Pooja Popup Overlay -->
+<div id="pooja-overlay">
+    <!-- Close Button -->
+    <div class="close-scroll-btn" onclick="closePoojaPopup()">&times;</div>
+
+    <!-- The Scroll Container -->
+    <div class="scroll-wrapper" id="scrollContainer" onclick="toggleScrollAnimation()">
+        <!-- Top Handle -->
+        <div class="roll top-roll">
+            <div class="roll-tip-left"></div>
+            <div class="roll-tip-right"></div>
+        </div>
+
+        <!-- Paper -->
+        <div class="paper">
+            <div class="scroll-content">
+                <h2>Daily Pooja Schedule</h2>
+                <ul>
+                    <li><strong>Ushathkalam:</strong> 07:00 AM - 08:00 AM</li>
+                    <li><strong>Kalasanthi:</strong> 08:00 AM - 09:00 AM</li>
+                    <li><strong>Uchikalam:</strong> 12:00 PM - 01:00 PM</li>
+                    <li><strong>Sayarakshai:</strong> 06:00 PM - 07:00 PM</li>
+                    <li><strong>Irandamkalam:</strong> 07:00 PM - 08:00 PM</li>
+                </ul>
+
+                <h4 style="color: #5c4015; margin-top: 20px; text-decoration: underline;">Special Events</h4>
+                <ul>
+                    <li><strong>Mon & Fri:</strong> Special Abhishekam</li>
+                    <li><strong>Full Moon:</strong> Satyanarayana Vratam</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h4 style="margin:0;">Temple Hours</h4>
+                    <small>Morning: 6:00 AM - 12:00 PM</small><br>
+                    <small>Evening: 4:00 PM - 8:30 PM</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Handle -->
+        <div class="roll bottom-roll">
+            <div class="roll-tip-left"></div>
+            <div class="roll-tip-right"></div>
+        </div>
+    </div>
+    
+    <div style="color: #b8860b; margin-top: 20px; font-family: 'Cinzel', serif; letter-spacing: 2px; animation: pulse 2s infinite;">
+        Tap Scroll to Toggle
+    </div>
+</div>
+<!-- Legend Popup Overlay -->
+<div id="legend-overlay">
+    <div class="parchment-box">
+        <span class="close-legend-btn" onclick="closeLegendPopup()">&times;</span>
+        
+        <!-- Text Container -->
+        <div id="typewriter-text"></div><span id="cursor-span" class="cursor"></span>
+    </div>
+</div>
+<!-- Gallery Modal Overlay -->
+ <!-- Gallery Modal Overlay (Photos Only) -->
+<!-- Gallery Modal Overlay (Fixed Controls) -->
+<!-- Gallery Modal Overlay (Photos Only) -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content modal-gallery-content">
+            
+            <!-- Close Button -->
+            <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 10000; filter: invert(1) drop-shadow(0 0 5px rgb(236, 233, 233)); width: 2rem; height: 2rem; color: #eee9e9;"></button>
+
+            <div class="modal-body p-0">
+                
+                <div id="galleryCarousel" class="carousel slide" data-bs-interval="false">
+                    
+                    <div class="carousel-inner">
+                        
+                        <!-- PHOTO 1 -->
+                        <div class="carousel-item active">
+                            <div class="gallery-image-wrapper">
+                                <img src="first.png" alt="Temple" class="img1">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Bhu Varaha Swamy Temple</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 2 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="second.jpg" alt="Sculptures" class="img2">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Intricate Carvings</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 3 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="third.jpg" alt="Gopuram">
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 4 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="fourth.jpg" alt="Deer Park" class="img3">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Kolanchiyappar Park Wildlife</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 5 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="fifth.png" alt="Lake">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Veeranam Lake</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 6 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="sixth.jpg" alt="Festival" class="img4">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Vaikasi Ther Festival</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PHOTO 7 -->
+                        <div class="carousel-item">
+                            <div class="gallery-image-wrapper">
+                                <img src="seventh.jpg" alt="Prasadam">
+                                <div class="carousel-caption d-none d-md-block gallery-caption-overlay">
+                                    <h5>Famous Prasadam</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- CONTROLS -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // 1. Navigation Scroll Color Change
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Parallax Background
+        document.addEventListener('mousemove', function(e) {
+            const bg = document.getElementById('heroArt');
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+            bg.style.transform = `translateX(${x}px) translateY(${y}px) scale(1.1)`;
+        });
+
+        // 3. 3D Tilt Logic
+        function applyTilt(selector, intensity) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -intensity;
+                    const rotateY = ((x - centerX) / centerX) * intensity;
+
+                    // Ensure the transform applies to the card itself
+                    el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    el.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+                });
+            });
+        }
+
+        // Apply tilt to Hero and Cards
+        applyTilt('.js-tilt-hero', 5);
+        applyTilt('.js-tilt-card', 10);
+
+
+        // --- Pooja Popup Logic ---
+
+function openPoojaPopup(event) {
+    if(event) event.preventDefault(); // Stop page jump
+    
+    const overlay = document.getElementById('pooja-overlay');
+    const scroll = document.getElementById('scrollContainer');
+    
+    // 1. Show Overlay (Flex to center)
+    overlay.style.display = 'flex';
+    
+    // 2. Automatically Open the Scroll after a slight delay
+    setTimeout(() => {
+        scroll.classList.add('open');
+    }, 300);
+}
+
+function closePoojaPopup() {
+    const overlay = document.getElementById('pooja-overlay');
+    const scroll = document.getElementById('scrollContainer');
+    
+    // 1. Close scroll first
+    scroll.classList.remove('open');
+    
+    // 2. Hide overlay after animation
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500);
+}
+
+function toggleScrollAnimation() {
+    const scroll = document.getElementById('scrollContainer');
+    scroll.classList.toggle('open');
+}
+// legend popup logic
+// --- Legend Typewriter Logic ---
+
+// The content to type out
+const legendContent = `• At the center of Srimushnam’s identity is Bhu Varaha Swamy Temple. According to local legend: when the demon Hiranyaksha stole the Earth and hid it in the underworld, the Earth-Goddess (Bhudevi) prayed to Vishnu for rescue. Vishnu appeared in his boar-avatar (Varaha), defeated the demon, and restored the Earth. That divine act is believed to have happened at the spot now called Srimushnam.`;
+
+;
+
+let i = 0;
+let isTyping = false;
+let typeInterval;
+
+function openLegendPopup(e) {
+    if(e) e.preventDefault();
+    
+    const overlay = document.getElementById('legend-overlay');
+    const textBox = document.getElementById('typewriter-text');
+    const cursor = document.getElementById('cursor-span');
+    
+    // 1. Show Overlay
+    overlay.style.display = 'flex';
+    // Small delay for CSS fade-in
+    setTimeout(() => {
+        overlay.classList.add('show');
+    }, 10);
+
+    // 2. Reset Typing
+    textBox.innerHTML = '';
+    cursor.style.display = 'inline-block';
+    i = 0;
+    isTyping = true;
+
+    // 3. Start Typing Animation
+    clearInterval(typeInterval); // Clear any existing intervals
+    typeInterval = setInterval(() => {
+        if (!isTyping) return;
+
+        // Check if finished
+        if (i < legendContent.length) {
+            // Add next character
+            textBox.innerHTML += legendContent.charAt(i);
+            i++;
+        } else {
+            // Finished typing
+            clearInterval(typeInterval);
+            isTyping = false;
+            cursor.style.display = 'none'; // Hide cursor when done
+        }
+    }, 30); // Speed: 30ms per character
+}
+
+function closeLegendPopup() {
+    const overlay = document.getElementById('legend-overlay');
+    
+    // 1. Fade out
+    overlay.classList.remove('show');
+    
+    // 2. Stop typing immediately
+    isTyping = false;
+    clearInterval(typeInterval);
+
+    // 3. Hide display after transition
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 300);
+}
+
+// --- Gallery Carousel Logic ---
+
+
+
+    </script>
+</body>
+</html>
